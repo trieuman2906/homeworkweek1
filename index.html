@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Number Guessing Game</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1 style="color: black;font-size: 50;text-align: center">
+      Number Guessing Game
+    </h1>
+    <br />
+    <div id="message"></div>
+
+    <input type="number" id="number" />
+
+    <button id="guessButton">Guess</button>
+    <button onclick="restart()">restart</button>
+    <div id="message1"></div>
+    <script>
+      let guessCount = 10;
+      let randomNumber = Math.floor(Math.random() * 100);
+      console.log(randomNumber);
+      const button = document.getElementById("guessButton");
+      button.addEventListener("click", function() {
+        let userGuess = document.getElementById("number").value;
+        if (userGuess < randomNumber) {
+          document.getElementById("message").innerHTML =
+            "Sorry your guess is too low";
+          document.getElementById("message").style.backgroundColor = "red";
+
+          counts();
+        } else if (userGuess > randomNumber) {
+          document.getElementById("message").innerHTML =
+            "Sorry your guess is too high";
+          document.getElementById("message").style.backgroundColor = "red";
+          counts();
+        } else {
+          document.getElementById("message").innerHTML =
+            "Congratulations!! You guessed correctly. Do you want restart game! ";
+          document.getElementById("message").style.backgroundColor = "green";
+        }
+      });
+      function counts() {
+        document.getElementById("message1").innerHTML =
+          "You have" + " " + parseInt(guessCount - 1) + " " + "guesses left";
+        guessCount = guessCount - 1;
+        if (guessCount == 0) {
+          document.getElementById("message1").innerHTML =
+            " Game over! you click reset";
+        }
+      }
+      function restart() {
+        document.getElementById("message").innerHTML = "Welcome to new game";
+        document.getElementById("message").style.backgroundColor = "white";
+        randomNumber = Math.floor(Math.random() * 100);
+        console.log(randomNumber);
+        guessCount = 11;
+        counts();
+      }
+    </script>
+  </body>
+</html>
